@@ -1,0 +1,53 @@
+# packages used
+import matplotlib.pyplot as plt
+import nltk
+nltk.download('stopwords')
+from nltk.corpus import PlaintextCorpusReader
+from nltk.corpus import stopwords
+from matplotlib.colors import ListedColormap
+from wordcloud import WordCloud
+import string
+# creating a corpus to read
+corpus = PlaintextCorpusReader('files', '.*', encoding = "ISO-8859-1")
+# reading the files
+files = corpus.fileids()
+# first file
+files[0]
+# print all names
+for a in files:
+    print(a)
+# reading the text from the first file
+text = corpus.raw('1.txt')
+text
+# acessing all files
+all_text = corpus.raw()
+# getting all the words from the corpus and viewing the quantity
+words = corpus.words()
+# acessing by the index number
+words[170]
+#quantity
+len(words)
+# NLTK will setup the stopwords function
+stops = stopwords.words
+# choosing which color will appear on the map
+map_colors = ListedColormap(['blue', 'yellow', 'red', 'purple'])
+# setting the word cloud, with a maximum of 100 words and using as stop words
+cloud = WordCloud(background_color = 'white',
+                  colormap = mapa_cores,
+                  stopwords = stops,
+                  max_words = 100)
+# viewing the cloud
+cloud.generate(all_text)
+plt.imshow(cloud)
+# creating a new list and removing the stopwords
+words_nostop = [p for p in words if p not in stops]
+len(words_nostop)
+# punctuation removal, generating a list with no stop words and no punctuation
+words_nopunc = [p for p in words_nopunc if p not in string.punctuation]
+len(words_nopunc)
+# calculating frequency of words and visualization of the most common
+frequency = nltk.FreqDist(words_nopunc)
+frequency 
+#mais comuns
+most_common = frequency.most_common(100)
+most_common
